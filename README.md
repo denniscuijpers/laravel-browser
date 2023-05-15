@@ -1,7 +1,7 @@
 # laravel-browser
 
 ### Installation
-```angular2html
+```bash
 composer require denniscuijpers/laravel-browser
 ```
 

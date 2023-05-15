@@ -73,36 +73,49 @@ class Browser
         self::$timezone   = self::DEFAULT_TIMEZONE;
     }
 
-    public static function setDeviceId(string $deviceId): void
+    public static function setDeviceId(?string $deviceId): void
     {
-        if (!empty($deviceId)) {
-            self::$deviceId = $deviceId;
+        if (empty($deviceId)) {
+            return;
         }
+
+        self::$deviceId = $deviceId;
     }
 
-    public static function setRequestId(string $requestId): void
+    public static function setRequestId(?string $requestId): void
     {
-        if (!empty($requestId)) {
-            self::$requestId = $requestId;
+        if (empty($requestId)) {
+            return;
         }
+        self::$requestId = $requestId;
     }
 
-    public static function setIpAddress(string $ipAddress): void
+    public static function setIpAddress(?string $ipAddress): void
     {
+        if (empty($ipAddress)) {
+            return;
+        }
+
         if (filter_var($ipAddress, FILTER_VALIDATE_IP) !== false) {
             self::$ipAddress = $ipAddress;
         }
     }
 
-    public static function setUserAgent(string $userAgent): void
+    public static function setUserAgent(?string $userAgent): void
     {
-        if (!empty($userAgent)) {
-            self::$userAgent = $userAgent;
+        if (empty($userAgent)) {
+            return;
         }
+
+        self::$userAgent = $userAgent;
     }
 
-    public static function setLocale(string $locale): void
+    public static function setLocale(?string $locale): void
     {
+        if (empty($locale)) {
+            return;
+        }
+
         $locale = str_replace('-', '_', $locale);
 
         if (($pos = strpos($locale, '_')) !== false) {
@@ -122,8 +135,12 @@ class Browser
         }
     }
 
-    public static function setCountry(string $country): void
+    public static function setCountry(?string $country): void
     {
+        if (empty($country)) {
+            return;
+        }
+
         $country = strtolower($country);
 
         if (in_array($country, self::countries(), true)) {
@@ -131,8 +148,12 @@ class Browser
         }
     }
 
-    public static function setTimezone(string $timezone): void
+    public static function setTimezone(?string $timezone): void
     {
+        if (empty($timezone)) {
+            return;
+        }
+
         if (in_array($timezone, self::timezones(), true)) {
             self::$timezone = $timezone;
         }
